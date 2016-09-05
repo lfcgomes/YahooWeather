@@ -23,7 +23,7 @@ Module.register("yahooweather",{
         fade: true,
         fadePoint: 0.25, // Start on 1/4th of the list.
 
-        initialLoadDelay: 2500, // 2.5 seconds delay. This delay is used to keep the OpenWeather API happy.
+        initialLoadDelay: 2500, // 2.5 seconds delay.
         retryDelay: 2500,
 
         apiVersion: "v1",
