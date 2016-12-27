@@ -190,24 +190,23 @@ Module.register("yahooweather",{
      * argument data object - Weather information received form openweather.org.
      */
     processWeather: function(data) {
-        
-        var forecastArray = data.query.results.channel.item.forecast;
-        this.forecast = [];
-        for (var i = 0, count = forecastArray.length; i < count; i++) {
 
-            var forecast = forecastArray[i];
-            this.forecast.push({
-                day: moment(forecast.date, "DD MMM YYYY").format("ddd"),
-                icon: "wi wi-yahoo-" + forecast.code,
-                maxTemp: this.roundValue(forecast.high),
-                minTemp: this.roundValue(forecast.low)
-            });
+        if(data.query.results){
+            var forecastArray = data.query.results.channel.item.forecast;
+            this.forecast = [];
+            for (var i = 0, count = forecastArray.length; i < count; i++) {
+
+                var forecast = forecastArray[i];
+                this.forecast.push({
+                    day: moment(forecast.date, "DD MMM YYYY").format("ddd"),
+                    icon: "wi wi-yahoo-" + forecast.code,
+                    maxTemp: this.roundValue(forecast.high),
+                    minTemp: this.roundValue(forecast.low)
+                });
+            }
+            this.loaded = true;
+            this.updateDom(this.config.animationSpeed);
         }
-
-        //Log.log(this.forecast);
-
-        this.loaded = true;
-        this.updateDom(this.config.animationSpeed);
     },
 
     /* scheduleUpdate()
